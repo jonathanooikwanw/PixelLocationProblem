@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener {
             lifecycleScope.launch(Dispatchers.Main) {
                 textView.text = "Location"
+                currentLocation = null
                 progressBar.visibility = View.VISIBLE
                 if(getCurrentLocation()) {
                     Toast.makeText(this@MainActivity, "Location success", Toast.LENGTH_LONG).show()
@@ -73,7 +74,6 @@ class MainActivity : AppCompatActivity() {
     //requests for permission for camera and location
     private fun requestPermission() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
-
             requestPermissions(
                 arrayOf(
                     Manifest.permission.ACCESS_COARSE_LOCATION,
